@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <title>Student List App</title>
+
+  <style>
+    .form-container {
+      width: 400px;
+      margin: 40px auto;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">Student List App</a>
+
+      <button class="navbar-toggler" type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="/addStudent">Add new student</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Form -->
+  <div class="form-container">
+    <h2 class="text-center mb-4">Add New Student</h2>
+
+    <form action="/addStudent" method="POST" enctype="multipart/form-data">
+      <div class="mb-3">
+        <label class="form-label">Student Name:</label>
+        <input type="text" name="name" class="form-control" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">D.o.B:</label>
+        <input type="date" name="dob" class="form-control">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Contact:</label>
+        <input type="text" name="contact" class="form-control" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Student Photo:</label>
+        <input type="file" name="image" class="form-control" accept="image/*">
+      </div>
+
+      <div class="text-center">
+        <button type="submit" class="btn btn-success">Add Student</button>
+        <a href="/" class="btn btn-secondary ms-2">Cancel</a>
+      </div>
+    </form>
+  </div>
+
+</body>
+</html>

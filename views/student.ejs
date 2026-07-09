@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Details</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <style>
+    .student-container {
+      width: 320px;
+      margin: 40px auto;
+      text-align: center;
+    }
+
+    .student-container img {
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin: 10px 0;
+    }
+
+    p {
+      margin-bottom: 15px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">Student List App</a>
+
+      <button class="navbar-toggler" type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="/addStudent">Add new student</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Student Details -->
+  <div class="student-container">
+
+    <h2 class="mb-4">Student Details</h2>
+
+    <% if (student) { %>
+      <p><strong>Student Name:</strong><br><%= student.name %></p>
+
+      <p>
+        <strong>Student Image:</strong><br>
+        <% if (student.image) { %>
+          <img src="<%= student.image %>" alt="Student Image">
+        <% } else { %>
+          <span class="text-muted">No image available</span>
+        <% } %>
+      </p>
+
+      <%
+        const date = new Date(student.dob);
+        const day = String(date.getDate()).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const year = date.getFullYear();
+      %>
+
+      <p><strong>D.o.B:</strong><br><%= `${day}/${month}/${year}` %></p>
+      <p><strong>Contact:</strong><br><%= student.contact %></p>
+
+      <!-- Action buttons -->
+      <div class="mt-3">
+        <a href="/updateStudent/<%= student.studentId %>" class="btn btn-warning me-2">Edit</a>
+        <a href="/deleteStudent/<%= student.studentId %>" class="btn btn-danger"
+           onclick="return confirm('Are you sure you want to delete this student?');">
+           Delete
+        </a>
+      </div>
+
+    <% } else { %>
+      <p>No student found.</p>
+    <% } %>
+
+    <div class="mt-4">
+      <a href="/" class="btn btn-secondary">⬅ Back</a>
+    </div>
+
+  </div>
+
+</body>
+</html>
